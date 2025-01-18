@@ -92,7 +92,7 @@ def deteframe_agent(open_ai_key, memorys, question):
         tools=tools,
         memory=memorys,
         verbose=True,
-        handle_parsing_errors=Ture,
+        handle_parsing_errors=True,
         max_iterations=8
     )
 

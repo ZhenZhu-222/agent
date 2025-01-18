@@ -1,7 +1,7 @@
 from langchain_openai import OpenAI
 import streamlit as st
 from langchain.memory import ConversationBufferMemory
-from ceshi2 import deteframe_agent
+from utils import deteframe_agent
 from jiankong import ragtool
 from langchain import hub
 from langchain.agents import create_structured_chat_agent, AgentExecutor

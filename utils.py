@@ -60,7 +60,7 @@ def deteframe_agent(open_ai_key, memorys, question):
 
 
     model = ChatOpenAI(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         openai_api_key=open_ai_key,
         temperature=0
     )

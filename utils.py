@@ -42,8 +42,18 @@ def deteframe_agent(open_ai_key, memorys, question):
                 return_source_documents=True
             )
 
-            # 假设 text 一定是包含 'title' 键的字典
-            text = text['title']
+            # 工具可能会接收到字符串或字典形式的输入。
+            # 旧代码假设传入的一定是包含 ``title`` 键的字典，
+            # 如果模型返回的并不是该结构，就会抛出 ``KeyError``。
+            # 为了提升健壮性，我们在这里兼容不同的输入格式。
+            if isinstance(text, dict):
+                # 优先使用 title 字段，如果不存在则尝试获取字典中的第一个值
+                if "title" in text:
+                    text = text["title"]
+                elif len(text) == 1:
+                    text = next(iter(text.values()))
+                else:
+                    raise ValueError(f"Invalid dict input: {text}")
 
             # 检查是否成功转换为字符串（以防万一）
             if not isinstance(text, str):
